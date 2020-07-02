@@ -17,7 +17,7 @@ NUM_TEST=10 # number of input images duirng test
 NUM_SAMPLES=10 # number of samples per input images
 
 # command
-CUDA_VISIBLE_DEVICES=${GPU_ID} python ./test.py \
+CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./test.py \
   --dataroot ./datasets/${CLASS} \
   --results_dir ${RESULTS_DIR} \
   --checkpoints_dir ./pretrained_models/ \

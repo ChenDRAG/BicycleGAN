@@ -63,7 +63,7 @@ esac
 
 
 # command
-CUDA_VISIBLE_DEVICES=${GPU_ID} python ./train.py \
+CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./train.py \
   --display_id ${DISPLAY_ID} \
   --dataroot ./datasets/${CLASS} \
   --name ${NAME} \
