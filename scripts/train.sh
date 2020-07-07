@@ -8,7 +8,7 @@ PORT=2005
 NZ=8
 
 
-CHECKPOINTS_DIR=../checkpoints/${CLASS}/
+CHECKPOINTS_DIR=./checkpoints/${CLASS}/
 DATE=`date '+%d_%m_%Y_%H'`
 NAME=${CLASS}_${MODEL}_${DATE}
 
@@ -49,6 +49,12 @@ case ${CLASS} in
   LOAD_SIZE=600
   SAVE_EPOCH=25
   DIRECTION='BtoA'
+  ;;
+'furniture')
+  NITER=200
+  NITER_DECAY=200
+  SAVE_EPOCH=25
+  LOAD_SIZE=256
   ;;
 'day2night')
   NITER=50

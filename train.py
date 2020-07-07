@@ -42,7 +42,7 @@ if __name__ == '__main__':
             total_iters += opt.batch_size
             epoch_iter += opt.batch_size
             model.set_input(data)         # unpack data from dataset and apply preprocessing
-            if not model.is_train():      # if this batch of input data is enough for training.
+            if not model.is_train():      # if this batch of input data is not enough for training.
                 print('skip this batch')
                 continue
             model.optimize_parameters()   # calculate loss functions, get gradients, update network weights
@@ -64,6 +64,7 @@ if __name__ == '__main__':
                 model.save_networks('latest')
 
             iter_data_time = time.time()
+
         if epoch % opt.save_epoch_freq == 0:              # cache our model every <save_epoch_freq> epochs
             print('saving the model at the end of epoch %d, iters %d' % (epoch, total_iters))
             model.save_networks('latest')

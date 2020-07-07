@@ -26,6 +26,7 @@ class BiCycleGANModel(BaseModel):
         self.netG = networks.define_G(opt.input_nc, opt.output_nc, opt.nz, opt.ngf, netG=opt.netG,
                                       norm=opt.norm, nl=opt.nl, use_dropout=opt.use_dropout, init_type=opt.init_type, init_gain=opt.init_gain,
                                       gpu_ids=self.gpu_ids, where_add=opt.where_add, upsample=opt.upsample)
+        # i think this should be input   why opt.conditional_D is false
         D_output_nc = opt.input_nc + opt.output_nc if opt.conditional_D else opt.output_nc
         if use_D:
             self.model_names += ['D']
@@ -69,7 +70,7 @@ class BiCycleGANModel(BaseModel):
         AtoB = self.opt.direction == 'AtoB'
         self.real_A = input['A' if AtoB else 'B'].to(self.device)
         self.real_B = input['B' if AtoB else 'A'].to(self.device)
-        self.image_paths = input['A_paths' if AtoB else 'B_paths']
+        self.image_paths = input['A_paths' if AtoB else 'B_paths']# no use discard
 
     def get_z_random(self, batch_size, nz, random_type='gauss'):
         if random_type == 'uni':
@@ -196,6 +197,7 @@ class BiCycleGANModel(BaseModel):
         self.optimizer_G.zero_grad()
         self.backward_EG()
 
+        #can i backward twice? won't override?
         # update G alone
         if self.opt.lambda_z > 0.0:
             self.set_requires_grad([self.netE], False)
