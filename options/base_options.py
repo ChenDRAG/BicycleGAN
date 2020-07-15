@@ -25,6 +25,7 @@ class BaseOptions():
         parser.add_argument('--nz', type=int, default=8, help='#latent vector')
         parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids: e.g. 0  0,1,2, 0,2, -1 for CPU mode')
         parser.add_argument('--name', type=str, default='', help='name of the experiment. It decides where to store samples and models')
+        parser.add_argument('--comment', type=str, default='No comment', help='comment of the experiment')
         parser.add_argument('--preprocess', type=str, default='resize_and_crop', help='not implemented')
         parser.add_argument('--dataset_mode', type=str, default='aligned', help='aligned,single')
         parser.add_argument('--model', type=str, default='bicycle_gan', help='chooses which model to use. bicycle,, ...')

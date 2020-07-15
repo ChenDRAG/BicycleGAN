@@ -1,17 +1,18 @@
 set -ex
 CLASS='edges2shoes'  # facades, day2night, edges2shoes, edges2handbags, maps
 MODEL='bicycle_gan'
-CLASS=${1}
 GPU_ID=${2}
-DISPLAY_ID=$((GPU_ID*10+1))
-PORT=2005
+CLASS=${1}
 NZ=8
-
+COMMENT=''
+lambda_L1=10
+lambda_z=0.5
 
 CHECKPOINTS_DIR=./checkpoints/${CLASS}/
 DATE=`date '+%d_%m_%Y_%H'`
 NAME=${CLASS}_${MODEL}_${DATE}
-
+DISPLAY_ID=$((GPU_ID*10+1))
+PORT=8097
 
 # dataset
 NO_FLIP=''
@@ -19,6 +20,7 @@ DIRECTION='AtoB'
 LOAD_SIZE=286
 CROP_SIZE=256
 INPUT_NC=3
+
 
 # dataset parameters
 case ${CLASS} in
@@ -84,4 +86,9 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./train.py \
   --input_nc ${INPUT_NC} \
   --niter ${NITER} \
   --niter_decay ${NITER_DECAY} \
-  --use_dropout
+  --comment ${COMMENT} \
+  --use_dropout \
+  --lambda_L1 ${lambda_L1} \
+  --lambda_z ${lambda_z} \
+  --display_env ${NAME}
+

@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args":[
+                "--display_id", "1" ,
+                "--dataroot", "./datasets/edges2shoes" ,
+                "--name" "edges2shoes_bicycle_gan" ,
+                "--model", "bicycle_gan" ,
+                "--direction", "AtoB" ,
+                "--checkpoints_dir", "../checkpoints/edges2shoes/" ,
+                "--load_size", "256" ,
+                "--crop_size", "256" ,
+                "--nz", "8" ,
+                "--input_nc", "1" ,
+                "--niter", "30" ,
+                "--niter_decay", "30" ,
+                "--use_dropout"
+            ]
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "Bash-Debug (simplest configuration)",
+            "program": "${file}"
+        }
+    ]
+}
