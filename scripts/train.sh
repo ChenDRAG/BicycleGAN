@@ -1,10 +1,9 @@
 set -ex
-CLASS='edges2shoes'  # facades, day2night, edges2shoes, edges2handbags, maps
+CLASS='furniture'  # facades, day2night, edges2shoes, edges2handbags, maps
 MODEL='bicycle_gan'
-GPU_ID=${2}
-CLASS=${1}
+GPU_ID=5
 NZ=8
-COMMENT=''
+COMMENT='furniture baseline'
 lambda_L1=10
 lambda_z=0.5
 
@@ -53,9 +52,9 @@ case ${CLASS} in
   DIRECTION='BtoA'
   ;;
 'furniture')
-  NITER=200
-  NITER_DECAY=200
-  SAVE_EPOCH=25
+  NITER=15
+  NITER_DECAY=20
+  SAVE_EPOCH=5
   LOAD_SIZE=256
   ;;
 'day2night')
