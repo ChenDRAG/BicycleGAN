@@ -3,9 +3,10 @@ CLASS='furniture'  # facades, day2night, edges2shoes, edges2handbags, maps
 MODEL='bicycle_gan'
 GPU_ID=5
 NZ=8
-COMMENT='furniture baseline'
+COMMENT='furniture-baseline-addbatch'
 lambda_L1=10
 lambda_z=0.5
+BATCH=32
 
 CHECKPOINTS_DIR=./checkpoints/${CLASS}/
 DATE=`date '+%d_%m_%Y_%H'`
@@ -89,5 +90,6 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./train.py \
   --use_dropout \
   --lambda_L1 ${lambda_L1} \
   --lambda_z ${lambda_z} \
+  --batch_size ${BATCH} \
   --display_env ${NAME}
 
