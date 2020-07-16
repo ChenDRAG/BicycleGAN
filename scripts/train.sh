@@ -1,15 +1,15 @@
 set -ex
 CLASS='furniture'  # facades, day2night, edges2shoes, edges2handbags, maps
 MODEL='bicycle_gan'
-GPU_ID=5
-NZ=8
-COMMENT='furniture-baseline-addbatch'
+GPU_ID=6
+NZ=3
+COMMENT='nzsetto3'
 lambda_L1=10
 lambda_z=0.5
 BATCH=32
 
 CHECKPOINTS_DIR=./checkpoints/${CLASS}/
-DATE=`date '+%d_%m_%Y_%H'`
+DATE=`date '+%m_%d_%H_%M_%S'`
 NAME=${CLASS}_${MODEL}_${DATE}
 DISPLAY_ID=$((GPU_ID*10+1))
 PORT=8097
@@ -54,8 +54,8 @@ case ${CLASS} in
   ;;
 'furniture')
   NITER=15
-  NITER_DECAY=20
-  SAVE_EPOCH=5
+  NITER_DECAY=35
+  SAVE_EPOCH=100
   LOAD_SIZE=256
   ;;
 'day2night')
@@ -92,4 +92,3 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./train.py \
   --lambda_z ${lambda_z} \
   --batch_size ${BATCH} \
   --display_env ${NAME}
-

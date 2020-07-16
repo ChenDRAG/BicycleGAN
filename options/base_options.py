@@ -86,7 +86,7 @@ class BaseOptions():
 
         # modify dataset-related parser options
         dataset_name = opt.dataset_mode
-        dataset_option_setter = data.get_option_setter(dataset_name)
+        dataset_option_setter = danta.get_option_setter(dataset_name)
         parser = dataset_option_setter(parser, self.isTrain)
 
         # save and return the parser
@@ -113,7 +113,7 @@ class BaseOptions():
         # save to the disk
         expr_dir = os.path.join(opt.checkpoints_dir, opt.name)
         util.mkdirs(expr_dir)
-        file_name = os.path.join(expr_dir, 'opt.txt')
+        file_name = os.path.join(expr_dir, 'opt_train.txt' if opt.isTrain else 'opt_test.txt')
         with open(file_name, 'wt') as opt_file:
             opt_file.write(message)
             opt_file.write('\n')
