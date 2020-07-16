@@ -1,8 +1,9 @@
 set -ex
 # models
-NAME='furniture_bicycle_gan_07_15_22_59_36'
+NAME='furniture_bicycle_gan_07_16_11_54_45'
 checkpoints_dir='./checkpoints/furniture/'
 RESULTS_DIR=${checkpoints_dir}${NAME}/test_results
+NZ=4
 #   (opt.checkpoints_dir, opt.name), '%s_net_%s.pth' % (epoch, name)   
 
 # dataset
@@ -33,6 +34,7 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./test.py \
   --num_test ${NUM_TEST} \
   --n_samples ${NUM_SAMPLES} \
   --aspect_ratio ${ASPECT_RATIO} \
+  --nz ${NZ} \
   --epoch latest \
   --center_crop \
   --no_flip \

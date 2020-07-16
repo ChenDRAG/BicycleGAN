@@ -58,8 +58,8 @@ case ${CLASS} in
   SAVE_EPOCH=100
   LOAD_SIZE=256
   NZ=4
-  lambda_L1=50
-  lambda_z=2.5
+  lambda_L1=10
+  lambda_z=5
   ;;
 'day2night')
   NITER=50
