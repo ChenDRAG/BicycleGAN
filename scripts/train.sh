@@ -1,9 +1,9 @@
 set -ex
 CLASS='furniture'  # facades, day2night, edges2shoes, edges2handbags, maps
 MODEL='bicycle_gan'
-GPU_ID=5
+GPU_ID=6
 NZ=8
-COMMENT='botel1lz5times_nz_add1_set4'
+COMMENT='lz-10times-l12times-lr20%-learn30e-decay25e'
 lambda_L1=10
 lambda_z=0.5
 BATCH=32
@@ -20,6 +20,7 @@ DIRECTION='AtoB'
 LOAD_SIZE=286
 CROP_SIZE=256
 INPUT_NC=3
+LR=0.0002
 
 
 # dataset parameters
@@ -53,13 +54,14 @@ case ${CLASS} in
   DIRECTION='BtoA'
   ;;
 'furniture')
-  NITER=25
-  NITER_DECAY=30
+  NITER=30
+  NITER_DECAY=25
   SAVE_EPOCH=100
   LOAD_SIZE=256
   NZ=4
   lambda_L1=10
   lambda_z=5
+  LR=0.00004
   ;;
 'day2night')
   NITER=50
@@ -94,4 +96,5 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./train.py \
   --lambda_L1 ${lambda_L1} \
   --lambda_z ${lambda_z} \
   --batch_size ${BATCH} \
-  --display_env ${NAME}
+  --display_env ${NAME} \
+  --lr ${LR}
